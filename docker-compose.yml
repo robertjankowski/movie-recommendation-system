@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  webapp:
+    image: music-recommendation-system:0.1
+    ports:
+      - '9000:9000'

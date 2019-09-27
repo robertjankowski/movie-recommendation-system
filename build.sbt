@@ -15,14 +15,21 @@ scalacOptions ++= Seq(
   "-language:postfixOps"
 )
 
+val akkaVersion = "2.5.23"
+val sparkVersion = "2.4.4"
+
 libraryDependencies ++= Seq(
+  "com.typesafe.akka"            %% "akka-actor"      % akkaVersion,
+  "com.typesafe.akka"            %% "akka-stream"     % akkaVersion,
+  "com.typesafe.akka"            %% "akka-http"       % "10.1.8",
   "ch.qos.logback"               %  "logback-classic" % "1.2.3",
-  "org.apache.spark"             %% "spark-core"      % "2.4.4",
   "com.typesafe.scala-logging"   %% "scala-logging"   % "3.9.2",
-  "org.apache.spark"             %% "spark-sql"       % "2.4.4"
+  "org.apache.spark"             %% "spark-core"      % sparkVersion,
+  "org.apache.spark"             %% "spark-sql"       % sparkVersion
 )
 
-javaOptions in run ++= Seq(
-  "-Dlog4j.debug=true",
-  "-Dlog4j.configuration=log4j.properties"
-)
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
+
+mainClass in Compile := Some("Boot")
+dockerBaseImage      := "openjdk:8-jre"
