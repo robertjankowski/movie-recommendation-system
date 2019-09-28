@@ -1,3 +1,5 @@
+import com.typesafe.sbt.packager.docker.ExecCmd
+
 name := "music-recommendation-system"
 
 version := "0.1"
@@ -22,6 +24,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka"            %% "akka-actor"      % akkaVersion,
   "com.typesafe.akka"            %% "akka-stream"     % akkaVersion,
   "com.typesafe.akka"            %% "akka-http"       % "10.1.8",
+  "com.typesafe"                 % "config"           % "1.3.4",
   "ch.qos.logback"               %  "logback-classic" % "1.2.3",
   "com.typesafe.scala-logging"   %% "scala-logging"   % "3.9.2",
   "org.apache.spark"             %% "spark-core"      % sparkVersion,
@@ -33,3 +36,4 @@ enablePlugins(DockerPlugin)
 
 mainClass in Compile := Some("Boot")
 dockerBaseImage      := "openjdk:8-jre"
+dockerCommands       += ExecCmd("CMD", "sbt", "run")
