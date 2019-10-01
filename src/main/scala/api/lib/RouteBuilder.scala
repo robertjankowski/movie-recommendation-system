@@ -11,7 +11,7 @@ object RouteBuilder {
              port: Int,
              routes: List[Routing])
             (implicit actorSystem: ActorSystem,
-             materializer: ActorMaterializer) = {
+             materializer: ActorMaterializer): Unit = {
     val allRoutes = routes
       .map(_.route)
       .reduce(_ ~ _)
