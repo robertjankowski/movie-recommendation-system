@@ -15,14 +15,14 @@ def SQL_INSERT_STATEMENT_FROM_DATAFRAME(SOURCE, TARGET):
     sql_texts = []
     for index, row in SOURCE.iterrows():
         sql_texts.append(
-            'INSERT INTO ' + TARGET + ' (' + str(', '.join(SOURCE.columns)) + ') VALUES ' + str(tuple(row.values)))
+            'INSERT INTO ' + TARGET + ' (' + str(', '.join(SOURCE.columns)) + ') VALUES ' + str(tuple(row.values))) + ';'
     return sql_texts
 
 
 with open('001_data.sql', 'w', encoding='utf-8') as f:
-    f.write(SQL_CREATE_STATEMENT_FROM_DATAFRAME(df, 'data'))
+    f.write(SQL_CREATE_STATEMENT_FROM_DATAFRAME(df, 'data') + ';')
     f.write('\n')
-    f.write(SQL_CREATE_STATEMENT_FROM_DATAFRAME(songs, 'songs'))
+    f.write(SQL_CREATE_STATEMENT_FROM_DATAFRAME(songs, 'songs') + ';')
     f.write('\n')
     f.write('\n'.join(SQL_INSERT_STATEMENT_FROM_DATAFRAME(df, 'data')))
     f.write('\n'.join(SQL_INSERT_STATEMENT_FROM_DATAFRAME(songs, 'songs')))
