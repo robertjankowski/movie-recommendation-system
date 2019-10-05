@@ -26,6 +26,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka"            %% "akka-http"       % "10.1.8",
   "com.typesafe"                 % "config"           % "1.3.4",
   "ch.qos.logback"               %  "logback-classic" % "1.2.3",
+  "postgresql"                   % "postgresql"       % "9.1-901-1.jdbc4",
   "com.typesafe.scala-logging"   %% "scala-logging"   % "3.9.2",
   "org.apache.spark"             %% "spark-core"      % sparkVersion,
   "org.apache.spark"             %% "spark-sql"       % sparkVersion

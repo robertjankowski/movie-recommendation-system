@@ -9,25 +9,27 @@ object Boot extends App with LazyLogging {
   implicit val system: ActorSystem = ActorSystem("music-recommendation-system")
   implicit val materializer: ActorMaterializer = ActorMaterializer()
 
-  val config = ConfigFactory.load()
-  new Factory(new MusicAppConfigurationImpl(config))
+  //val config = ConfigFactory.load()
+  //val factory = new Factory(new MusicAppConfigurationImpl(config))
 
-  def testSpark = {
+  val ss = SparkSession
+    .builder()
+    .appName("Music recommendation system")
+    .master("local")
+    .getOrCreate()
+  val sc = ss.sparkContext
+  sc.setLogLevel("ERROR")
 
-    val ss = SparkSession
-      .builder()
-      .appName("Music recommendation system")
-      .master("local[4]")
-      .getOrCreate()
+  val jdbcDF = ss.read
+    .format("jdbc")
+    .option("url", "jdbc:postgresql://localhost:5432/docker")
+    .option("dbtable", "songs")
+    .option("useUnicode", "true")
+    .option("continueBatchOnError", "true")
+    .option("useSSL", "false")
+    .option("user", "docker")
+    .option("password", "")
+    .load()
+  println(jdbcDF.printSchema())
 
-    val sc = ss.sparkContext
-    sc.setLogLevel("ERROR")
-
-    val rddL = sc.parallelize((1 to 1E6.toInt).toList, 4)
-
-    val sumOddNumber = rddL
-      .filter(_ % 2 != 0)
-      .sum()
-    println(s"Sum of odd number ${sumOddNumber.longValue()}")
-  }
 }
