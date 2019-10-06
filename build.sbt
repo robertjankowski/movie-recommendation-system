@@ -29,6 +29,7 @@ libraryDependencies ++= Seq(
   "postgresql"                   % "postgresql"       % "9.1-901-1.jdbc4",
   "com.typesafe.scala-logging"   %% "scala-logging"   % "3.9.2",
   "org.apache.spark"             %% "spark-core"      % sparkVersion,
+  "org.apache.spark"             %% "spark-mllib"     % sparkVersion,
   "org.apache.spark"             %% "spark-sql"       % sparkVersion
 )
 
