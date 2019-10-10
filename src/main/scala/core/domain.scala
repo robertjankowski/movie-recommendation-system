@@ -1,7 +1,7 @@
 package core
 
 import core.domain.{Movie, User}
-import org.apache.spark.sql.Encoders
+import org.apache.spark.sql.{Encoder, Encoders}
 
 object domain {
 
@@ -11,6 +11,6 @@ object domain {
 }
 
 object encoders {
-  implicit val userEncoder = Encoders.product[User]
-  implicit val movieEncoder = Encoders.product[Movie]
+  implicit val userEncoder: Encoder[User] = Encoders.product[User]
+  implicit val movieEncoder: Encoder[Movie] = Encoders.product[Movie]
 }

@@ -3,6 +3,7 @@ import akka.stream.ActorMaterializer
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
 import core.encoders._
+import org.apache.spark.sql.functions._
 
 object Boot extends App with LazyLogging {
   implicit val system: ActorSystem = ActorSystem("music-recommendation-system")
@@ -16,13 +17,17 @@ object Boot extends App with LazyLogging {
   val sc = ss.sparkContext
   sc.setLogLevel("ERROR")
 
-  val movies = factory.loadMovies(ss)
-  val ratings = factory.loadUsersRatings(ss)
+  val movies = factory.loadMovies(ss).cache()
+  val ratings = factory.loadUsersRatings(ss).cache()
 
-  movies.printSchema()
-  ratings.printSchema()
+  val df = ratings.join(movies, Seq("movieId")).cache()
+  val pivotItemBased = df
+    .groupBy(col("title"))
+    .pivot(col("userId"), Seq("rating"))
+    .agg(mean("rating"))
+    .cache()
+  pivotItemBased.printSchema()
+  pivotItemBased.show(10)
 
-  movies.show(5)
-  ratings.show(5)
   ss.stop()
 }
