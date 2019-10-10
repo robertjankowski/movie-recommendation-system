@@ -12,5 +12,5 @@ src_managed/
 project/boot/
 project/plugins/project/
 
-recommendation/.ipynb_checkpoints.idea\
+recommendation/.ipynb_checkpoints
 .idea
