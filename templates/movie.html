@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie recommendation system</title>
+</head>
+
+{% for table in tables %}
+    {{ titles[loop.index] }}
+    {{ table|safe }}
+{% endfor %}
+
+</html>
