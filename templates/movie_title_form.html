@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Movie recommendation system</title>
-</head>
-<body>
+{% extends 'base.html'%}
 
+{% block content %}
+
+<label for="movie_title">What's your favourite movie?</label>
 <form method="post">
-    <input type="text" name="movie_title">
+    <input type="text" id="movie-input" name="movie_title" list="movies_title_list">
     <input type="submit">
 </form>
 
-</body>
-</html>
+<datalist id="movies_title_list">
+    {% for item in app.recommender.columns %}
+    <option value="{{ item }}">{{ item }}</option>
+    {% endfor %}
+</datalist>
+
+{% endblock %}
