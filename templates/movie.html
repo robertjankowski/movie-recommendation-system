@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Movie recommendation system</title>
-</head>
+{% extends 'base.html'%}
 
-{% for table in tables %}
-    {{ titles[loop.index] }}
-    {{ table|safe }}
-{% endfor %}
+{% block content %}
 
-</html>
+{{ data.to_html(classes='pure-table pure-table-horizontal') | safe }}
+
+<button class="recommend-button pure-button"
+        onclick="window.location.href='{{ url_for( 'recommend_movie_form') }}';"> Back to recommendation
+</button>
+
+{% endblock %}
