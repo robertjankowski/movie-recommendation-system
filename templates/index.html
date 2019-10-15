@@ -1,15 +1,17 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<h1>Movie recommendation system</h1>
+    <h1>Movie recommendation system</h1>
 
+    <button class="recommend-button pure-button"
+            onclick="window.location.href='{{ url_for( 'recommend_movie') }}';">Select movie (item based
+        recommendation)
+    </button>
 
-<button class="recommend-button pure-button"
-        onclick="window.location.href='{{ url_for( 'recommend_movie') }}';">Select movie (item based
-    recommendation)
-</button>
-
-<button class="recommend-button pure-button">Add recommendation (user based recommendation)</button>
+    <button class="recommend-button pure-button"
+            onclick="window.location.href='{{ url_for( 'recommend_movie_genre') }}';">Select movie (item and genre based
+        recommendation)
+    </button>
 
 {% endblock %}
