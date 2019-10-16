@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
           integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -20,5 +21,13 @@
     {% block content %} {% endblock %}
 </div>
 
+<div class="footer">
+    <small>&copy; Copyright <span id="year">2019</span>, Robert Jankowski</small>
+    <a href="https://github.com/robertjankowski/movie-recommendation-system"><i class="fa">&#xf09b;</i></a>
+</div>
+
+<script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
 </body>
 </html>
