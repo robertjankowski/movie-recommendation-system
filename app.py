@@ -13,29 +13,35 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/movie')
+@app.route('/title')
 def recommend_movie_form():
-    return render_template('movie_title_form.html', app=app)
+    return render_template('movie_form.html', app=app)
 
 
-@app.route('/movie', methods=['POST'])
+@app.route('/title', methods=['POST'])
 def recommend_movie():
     movie_title = request.form['movie_title']
     try:
         df = item_based_recom(app.recommender, movie_title).head(10)
     except Exception:
         return render_template('error_title.html')
-    return render_template('movie.html', name='Movie recommendation for {}'.format(movie_title), data=df)
+    return render_template('movie_title.html', name='Movie recommendation for {}'.format(movie_title), data=df)
+
+
+@app.route('/genre')
+def recommend_movie_genre_form():
+    return render_template('movie_form.html', app=app)
 
 
 @app.route('/genre', methods=['POST'])
 def recommend_movie_genre():
     movie_title = request.form['movie_title']
     try:
-        df = item_and_genre_based_recom(item_based_recom(app.recommender, movie_title), app.movies, categories)
+        df = item_and_genre_based_recom(item_based_recom(app.recommender, movie_title), app.movies, categories).head(10)
     except Exception:
         return render_template('error_title.html')
-    return render_template('movie.html', name='Movie and genre recommendation for {}'.format(movie_title), data=df)
+    return render_template('movie_genre.html', name='Movie and genre recommendation for {}'.format(movie_title),
+                           data=df)
 
 
 if __name__ == '__main__':
