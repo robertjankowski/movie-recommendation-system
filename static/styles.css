@@ -1,38 +1,17 @@
 html {
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background: #eee;
     padding: 1rem;
 }
 
 body {
-    max-width: 960px;
+    max-width: 50%;
     margin: 0 auto;
     background: white;
 }
 
-p {
-    font-size: 20px;
-}
-
-h1 {
-    font-family: serif;
-    color: #377ba8;
-    margin: 1rem 0;
-}
-
 .content {
     padding: 0 10rem 1rem;
-}
-
-.content > header {
-    border-bottom: 1px solid lightgray;
-    display: flex;
-    align-items: flex-end;
-}
-
-.content > header h1 {
-    flex: auto;
-    margin: 1rem 0 0.25rem 0;
 }
 
 .content form {
@@ -43,23 +22,16 @@ h1 {
 
 .content label {
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 1vw;
     margin-bottom: 0.5em;
 }
 
 input[type=text] {
-    padding: 10px;
-    border: 2px solid #ccc;
-    -webkit-border-radius: 5px;
+    padding: 1vw;
     border-radius: 5px;
 }
 
-input[type=text]:focus {
-    border-color: #333;
-}
-
 input[type=submit] {
-    padding: 5px 15px;
     background: #ccc;
     border: 0 none;
     cursor: pointer;
@@ -76,8 +48,8 @@ input[type=submit] {
 .recommend-button:hover {
     background: rgba(67, 37, 49, 0.55);
     letter-spacing: 1px;
-    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.31);
+    -webkit-box-shadow: 0 5px 40px -10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 40px -10px rgba(0, 0, 0, 0.31);
     box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.27);
     transition: all 0.4s ease 0s;
 }

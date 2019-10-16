@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Item and genre based recommendation</h2>
+
+    {{ data.to_html(classes='pure-table pure-table-horizontal') | safe }}
+
+    <button class="recommend-button pure-button"
+            onclick="window.location.href='{{ url_for( 'recommend_movie_genre_form') }}';"> Back to recommendation
+    </button>
+
+{% endblock %}

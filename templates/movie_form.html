@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<label for="movie_title">What's your favourite movie?</label>
+<form method="post">
+    <input type="text" id="movie-input" name="movie_title" list="movies_title_list">
+    <input class="recommend-button" type="submit">
+</form>
+
+<datalist id="movies_title_list">
+    {% for item in app.recommender.columns %}
+    <option value="{{ item }}">{{ item }}</option>
+    {% endfor %}
+</datalist>
+
+{% endblock %}
